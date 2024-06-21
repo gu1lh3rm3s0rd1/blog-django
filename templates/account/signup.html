@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block content %}
+  <!-- Seu conteúdo aqui -->
+  <div id="logreg-forms" style="border-radius: 25px; padding: 15px;">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign up</h1>
+    <p class="text-center mb-0" style="font-size: 0.875rem;">Já tem uma conta? Faça o <a href="/accounts/login/">login</a></p>
+    <!-- <form class="form-signin" method="post" action="{% url 'account_signup' %}">         -->
+      <form class="form-signin" method="post" action="/accounts/signup/">        
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {% for error in form.non_field_errors %}
+          {{ error }}
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+        {% endfor %}
+
+        <label for="id_username">Nome de usuário:</label>
+        <input class="form-control" type="text" name="username" placeholder="Nome de usuário" autocomplete="username" minlength="1" maxlength="150" required="" id="id_username"/>
+        
+        <label for="id_email">E-mail (opcional):</label>
+        <input class="form-control" type="email" name="email" placeholder="Endereço de e-mail" autocomplete="email" maxlength="320" id="id_email"/>
+        
+        <label for="id_password1">Senha:</label>
+        <input class="form-control"  type="password" name="password1" placeholder="Senha" autocomplete="new-password" required="" aria-describedby="id_password1_helptext" id="id_password1"/>
+        {% if form.password1.errors %}
+        <div class="alert alert-danger">
+          {% for error in form.password1.errors %}
+          {{ error }}
+          {% endfor %}
+        </div>
+        {% endif %}
+        <span class="helptext" id="id_password1_helptext"></span>
+
+        <label for="id_password2">Senha (novamente):</label>
+        <input class="form-control" type="password" name="password2" placeholder="Senha (novamente)" autocomplete="new-password" required="" id="id_password2"/>
+        {% if form.password2.errors %}
+        <div class="alert alert-danger">
+          {% for error in form.password2.errors %}
+          {{ error }}
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <ul class="container-fluid mt-1">
+          <li style="font-size: 0.600rem;">Sua senha não pode ser muito parecida com o resto das suas informações pessoais.</li>
+          <li style="font-size: 0.600rem;">Sua senha precisa conter pelo menos 8 caracteres.</li>
+          <li style="font-size: 0.600rem;">Sua senha não pode ser uma senha comumente utilizada.</li>
+          <li style="font-size: 0.600rem;">Sua senha não pode ser inteiramente numérica.</li>
+        </ul>
+
+        <button class="btn btn-success btn-block" type="submit">Cadastro</button>
+      </form>
+  </div>
+{% endblock %}

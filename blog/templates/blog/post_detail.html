@@ -1,0 +1,131 @@
+{% extends "main.html" %}
+{% load static %}
+{% load markdown_extras %}
+
+{% block extra_head %}
+<title>{{ post.title }}</title>
+
+<style>
+
+  .code-container {
+    position: relative;
+  }
+
+  .copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 12px;
+    display: flex;
+  }
+
+  pre {
+    padding: 12px !important;
+    border-radius: 5px !important;
+    position: relative !important;
+    background-color: whitesmoke !important;
+  }
+
+  img {
+    max-width: 15% !important;
+  }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper mt-5">
+
+  <div class="post post-excerpt mt-3 mb-5">
+    <p>
+      {{ post.description }}
+    </p>
+  </div>
+
+  <div class="post mb-5 mt-5">
+    <h1 class="post-title">
+      {{ post.title }}
+    </h1>
+    <hr>
+
+    <div class="post-excerpt mt-5 content-markdown mb-5">
+      {{ post.content|markdown }}
+    </div>
+    <hr>
+
+    {% include 'layouts/writeby.html' %}
+  </div>
+
+  {% if user.is_superuser %}
+  <div class="post text-end">
+    <a href="{% url 'post_edit' post.id %}" class="btn btn-secondary">Editar Publicação</a>
+  </div>
+  <hr />
+  {% endif %}
+
+  <div class="post mb-5">
+    {% include 'layouts/comments.html' %}
+  </div>
+
+  <div class="post mb-0" style="margin-bottom: 0 !important;">
+    {% include 'layouts/share.html' %}
+  </div>
+
+</div>
+
+{% include 'layouts/footer.html' %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var replyLinks = document.querySelectorAll('.reply-link');
+    replyLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var commentId = this.getAttribute('data-comment-id');
+        var replyForm = document.getElementById('reply-form-' + commentId);
+        replyForm.style.display = 'block';
+      });
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre').forEach((block) => {
+      // Criar botão de cópia
+      let button = document.createElement('button');
+      button.classList.add('copy-button');
+      button.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+          </svg>
+        `;
+      block.appendChild(button);
+      // block.parentNode.classList.add('code-container');
+      // block.parentNode.appendChild(button);
+
+      button.addEventListener('click', () => {
+        navigator.clipboard.writeText(block.innerText).then(() => {
+          button.innerHTML = 'Copied!';
+          setTimeout(() => {
+            button.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+                </svg>
+              `;
+          }, 2000);
+        }).catch(err => {
+          console.error('Failed to copy: ', err);
+        });
+      });
+    });
+  });
+</script>
+
+{% endblock %}

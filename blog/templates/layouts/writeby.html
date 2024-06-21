@@ -1,0 +1,26 @@
+{% load static %}
+
+<div class="bottom-teaser cf" style="margin-top: 2rem !important;">
+  <div class="isLeft">
+    <h6 class="index-headline"> <span>Escrito por</span> </h6>
+    <section class="author">
+      <div class="author-image" style="background-image: url({% static 'img/profile.jpg' %});">Blog Logo</div>
+      <h4>
+        {{ post.author.first_name }}
+        {{ post.author.last_name }}
+      </h4>
+      <P class="mt-1"> Programador de Sistemas e estudante de Engenharia de Software </P>
+    </section>
+  </div>
+
+  <div class="isRight">
+    <h5 class="index-headline featured"><span></span></h5>
+    <footer class="site-footer">
+      <section class="poweredby">Publicado com <a href="https://www.djangoproject.com/start/">Django</a></section>
+      <p class=""><time datetime="{{ post.created_at|date:"d/m/Y" }}">
+          {{ post.created_at|date:"d/m/Y" }}</time></p>
+    </footer>
+  </div>
+</div>
+
+

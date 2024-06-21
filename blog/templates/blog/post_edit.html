@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{% block extra_head %}{{ form.media }} {% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper">
+  <div class="post">
+    <h1>Edite
+      {{ post.title }}
+    </h1>
+    <form method="post" id="forms" class="mt-3">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-group text-end" style="margin-top: 23rem">
+        <a href="{% url 'home' %}" class="btn btn-danger" name="cancel">
+          Cancelar
+        </a>
+        <button type="submit" class="btn btn-success" name="submit" form="forms">
+          Salvar
+        </button>
+      </div>
+    </form>
+
+    {% endblock %}
+  </div>
+</div>

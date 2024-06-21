@@ -1,0 +1,51 @@
+{% extends "main.html" %} 
+{% comment %} <!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog Home</title>
+  </head>
+  <body>
+    {% endcomment %} 
+
+{% block content %}
+
+    {% include 'layouts/navbar.html' %}
+
+    <div class="content-wrapper" style="margin-top: 5rem !important;">
+      {% include 'bio.html' %} 
+
+      {% for post in posts %}
+        <div class="post" style="border-bottom: 1px solid #d7d7d7">
+            <h2 class="post-title mb-2">
+            <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+            </h2>
+            <div class="post-excerpt">
+            <p style="color: #666665;">{{ post.description|slice:":200" }}</p>
+            </div>
+            <p>{{ post.created_at|date:"d/m/Y"|default:"Sem data" }}</p>
+        </div>
+        <hr />
+      {% endfor %}
+
+        <div class="pagination">
+            {% if posts.has_previous %}
+                <a href="?page={{ posts.previous_page_number }}" style="color: black;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                    </svg>
+                </a>
+            {% endif %}
+            <span class="current-page"> Página {{ posts.number }} de {{ posts.paginator.num_pages }}</span>
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}" style="color: black;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                    </svg>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'layouts/footer.html' %}
+
+{% endblock %}

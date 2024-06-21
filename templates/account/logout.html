@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Logout{% endblock %}
+{% block content %}
+
+<div id="logreg-forms" style="border-radius: 25px">
+  <form method="post" action="/accounts/logout/">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
+      Sair
+    </h1>
+
+    <p style="text-align: center">Tem certeza que deseja sair?</p>
+    {% csrf_token %}
+    <div class="social-login d-flex w-100 d-flex justify-content-center">
+      <button type="submit" class="btn btn-danger w-100">Sair</button>
+    </div>
+  </form>
+
+  <div class="p-3">
+    <a href="/accounts/email/">Change Email</a></br>
+    <a href="/accounts/password/change/">Alterar senha</a></br>
+    <a href="/accounts/logout/">Sair</a>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+
+
+<p class="mb-1">
+  {{ post.comments.count }} comentários
+</p>
+
+<form method="post" class="text-end">
+  {% csrf_token %}
+  {% if user.is_authenticated %}
+    {{ comment_form.as_p }}
+    <button class="btn btn-group btn-success" type="submit">Comentar!</button>
+  {% else %}
+  <div class="d-flex justify-content-center align-items-center">
+    <p class="text-danger"> Faça o login para fazer comentários no post </p>
+  </div> 
+     {{ comment_form.as_p }}
+    <a href="{% url 'account_login' %}" class="btn btn-group btn-success">Comentar!</a>
+  {% endif %}
+</form>
+<hr />
+
+<p class="mb-1"> Comentários </p>
+{% for comment in post.comments.all %}
+  <figure>
+    <blockquote class="blockquote">
+      <p class="mb-1">
+        {{ comment.content }}
+      </p>
+    </blockquote>
+    <figcaption class="blockquote-footer" style="margin-bottom: 0!important;">
+      {{ comment.user.first_name }}
+      {{ comment.user.last_name }} |
+      {{ comment.created_at|date:"d/m/Y H:i" }}
+    </figcaption>
+    <small class="mt-1" style="font-size: 0.600rem;"><a href="#" class="reply-link" data-comment-id="{{ comment.pk }}">Responder</a></small>
+    <div id="reply-form-{{ comment.pk }}" class="reply-form mt-1" style="display: none;">
+      <form method="post" action="{% url 'reply_to_comment' comment.pk %}" class="text-end">
+        {% csrf_token %}
+        <textarea name="content" cols="40" rows="10" class="form-control" placeholder="Responda o comentário" style="height: 100px" width="100%" resize="none"></textarea>
+        <button class="btn btn-group btn-success mt-2" type="submit">Comentar!</button>
+      </form>
+    </div>
+    {% for reply in comment.replies.all %}
+    <div class="container text-muted mt-2">
+      <blockquote class="blockquote">
+        <p class="mb-1">
+          {{ reply.content }}
+        </p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        {{ reply.user.first_name }}
+        {{ reply.user.last_name }} |
+        {{ reply.created_at|date:"d/m/Y H:i" }}
+      </figcaption>
+    </div>
+    <div class="reply">
+      <p class="mb-1">
+        {{ reply.text }}
+      </p>
+      {% if request.user == reply.user or request.user.is_superuser %}
+      <form method="post" action="{% url 'delete_reply' reply.pk %}" class="mt-2" style="padding-left: 1.5rem;">
+        {% csrf_token %}
+        <button type="submit" class="btn" style="padding: 0!important">Deletar</button>
+      </form>
+      {% endif %}
+    </div>
+    {% endfor %}
+    {% if request.user == comment.user or request.user.is_superuser %}
+    <form method="post" action="{% url 'delete_comment' comment.pk %}" class="mt-2">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Deletar</button>
+    </form>
+    {% endif %}
+  </figure>
+  <hr />
+{% endfor %}
+
