@@ -107,8 +107,6 @@
           </svg>
         `;
       block.appendChild(button);
-      // block.parentNode.classList.add('code-container');
-      // block.parentNode.appendChild(button);
 
       button.addEventListener('click', () => {
         navigator.clipboard.writeText(block.innerText).then(() => {
