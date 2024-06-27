@@ -51,11 +51,11 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
+    # 'allauth.socialaccount',
 
     # provider
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.github',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.github',
 ]
 
 # CRISPY_TEMPLATE_PACK = 'bootstrap'
@@ -143,8 +143,11 @@ USE_I18N = True
 USE_TZ = True
 
 ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
+
 LOGIN_REDIRECT_URL = '/'
+
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

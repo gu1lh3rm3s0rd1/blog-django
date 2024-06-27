@@ -1,7 +1,7 @@
 
 
 {% extends "base.html" %}
-{% load socialaccount %}
+{% comment %} {% load socialaccount %} {% endcomment %}
 
 {% block title %}Login{% endblock %}
 
@@ -26,8 +26,9 @@
             </div>
             {% endfor %}
 
-            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
-            <div class="social-login d-flex">
+            <h1 class="h3 mb-5 font-weight-normal" style="text-align: center"> Sign in</h1>
+
+            {% comment %} <div class="social-login d-flex">
                 <button class="btn social-btn" type="button">
                     <a href="{% provider_login_url 'github' %}" class="text-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
@@ -43,13 +44,13 @@
                     </a>
                 </button>                
             </div>
-            <p style="text-align:center"> OR </p>
+            <p style="text-align:center"> OR </p> {% endcomment %}
 
             <label for="id_login">Nome de usuário:</label>
-            <input type="text" name="login" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" autocomplete="username" maxlength="150" aria-invalid="true">
+            <input type="text" name="login" id="inputEmail" class="form-control mb-2" placeholder="Email address" required="" autofocus="" autocomplete="username" maxlength="150" aria-invalid="true">
 
             <label for="id_password">Senha:</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="" autocomplete="current-password" aria-invalid="true" aria-describedby="id_password_helptext">
+            <input type="password" name="password" id="inputPassword" class="form-control mb-5" placeholder="Password" required="" autocomplete="current-password" aria-invalid="true" aria-describedby="id_password_helptext">
 
             <button class="btn btn-success btn-block mb-2 w-100" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button><br>                 
             
