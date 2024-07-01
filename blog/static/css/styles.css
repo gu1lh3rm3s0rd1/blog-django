@@ -350,3 +350,22 @@ footer {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+@media only screen and (max-width: 800px) {
+  .blog-header {
+    padding: 0 16px;
+  }
+
+  .content {
+    padding: 0 32px;
+  }
+
+  .post .bottom-teaser .isLeft {
+    width: 100%;
+    padding-bottom: 32px;
+  }
+
+  .post .bottom-teaser .isRight {
+    width: 100%;
+  }
+}
