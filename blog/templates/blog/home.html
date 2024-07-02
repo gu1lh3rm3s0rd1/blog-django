@@ -13,7 +13,11 @@
             <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
             </h2>
             <div class="post-excerpt">
-            <p style="color: #666665;">{{ post.description|slice:":200" }}</p>
+            {% if post.description|length > 200 %}
+  <p style="color: #666665;">{{ post.description|slice:":200" }}...</p>
+{% else %}
+  <p style="color: #666665;">{{ post.description }}</p>
+{% endif %}
             </div>
             <p>{{ post.created_at|date:"d/m/Y"|default:"Sem data" }}</p>
         </div>

@@ -28,8 +28,7 @@
       </p>
     </blockquote>
     <figcaption class="blockquote-footer" style="margin-bottom: 0!important;">
-      {{ comment.user.first_name }}
-      {{ comment.user.last_name }} |
+      {{ comment.user }} |
       {{ comment.created_at|date:"d/m/Y H:i" }}
     </figcaption>
     <small class="mt-1" style="font-size: 0.600rem;"><a href="#" class="reply-link" data-comment-id="{{ comment.pk }}">Responder</a></small>
@@ -48,8 +47,7 @@
         </p>
       </blockquote>
       <figcaption class="blockquote-footer">
-        {{ reply.user.first_name }}
-        {{ reply.user.last_name }} |
+        {{ reply.user }} |
         {{ reply.created_at|date:"d/m/Y H:i" }}
       </figcaption>
     </div>
