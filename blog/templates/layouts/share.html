@@ -18,14 +18,14 @@
       <h4 style="padding-left: 0 !important; font-size: 18px; line-height: 1.1; font-weight: 700;">Gostou do post? </h4>
       <p class="mb-0">Compartilhe nas redes</p>
       <div class="blog-header" style="margin: 0 !important;">
-        <div class="custom-links" style="margin: 0 !important; text-align: start;">
+        <div class="custom-links" style="margin: 0 !important; text-align: start;"> 
 
-          <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
+           <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
             <img src="{% static 'img/facebook.png' %}" alt="Facebook">
-          </a>
+          </a> 
           {% comment %} &nbsp;&nbsp;·&nbsp;&nbsp; {% endcomment %}
 
-          <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ post.title }}" target="_blank">
+           <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ post.title }}" target="_blank">
             <img src="{% static 'img/x.png' %}" alt="Twitter/X">
           </a>
           {% comment %} &nbsp;&nbsp;·&nbsp;&nbsp; {% endcomment %}

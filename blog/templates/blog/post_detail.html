@@ -35,7 +35,14 @@
     max-width: 15% !important;
   }
 
+  @media (min-width: 768px) and (max-width: 1023px) {
+    img {
+      max-width: 30% !important;
+    }
+  }
+
 </style>
+
 {% endblock %}
 
 {% block content %}
@@ -69,11 +76,11 @@
   <hr />
   {% endif %}
 
-  <div class="post mb-5">
+  <div class="post mb-5 post-mb">
     {% include 'layouts/comments.html' %}
   </div>
 
-  <div class="post mb-0" style="margin-bottom: 0 !important;">
+  <div class="post mb-0 post-mb" style="margin-bottom: 0 !important;">
     {% include 'layouts/share.html' %}
   </div>
 

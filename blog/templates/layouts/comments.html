@@ -1,6 +1,6 @@
 
 
-<p class="mb-1">
+<p class="comment-mb mb-1">
   {{ post.comments.count }} comentários
 </p>
 
@@ -19,11 +19,11 @@
 </form>
 <hr />
 
-<p class="mb-1"> Comentários </p>
+<p class="comment-mb mb-1"> Comentários </p>
 {% for comment in post.comments.all %}
   <figure>
     <blockquote class="blockquote">
-      <p class="mb-1">
+      <p class="comment-mb mb-1">
         {{ comment.content }}
       </p>
     </blockquote>
@@ -43,7 +43,7 @@
     {% for reply in comment.replies.all %}
     <div class="container text-muted mt-2">
       <blockquote class="blockquote">
-        <p class="mb-1">
+        <p class="comment-mb mb-1">
           {{ reply.content }}
         </p>
       </blockquote>
@@ -54,7 +54,7 @@
       </figcaption>
     </div>
     <div class="reply">
-      <p class="mb-1">
+      <p class="comment-mb mb-1">
         {{ reply.text }}
       </p>
       {% if request.user == reply.user or request.user.is_superuser %}
