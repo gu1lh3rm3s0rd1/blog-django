@@ -44,6 +44,11 @@
 <div class="content-wrapper mt-5">
 
   <div class="post post-excerpt mt-3 mb-5">
+    {% if post.cover_image %}
+    <div class="cover-image mb-5">
+      <img src="{{ post.cover_image.url }}" alt="Cover image for {{ post.title }}">
+    </div>
+    {% endif %}
     <p>
       {{ post.description }}
     </p>

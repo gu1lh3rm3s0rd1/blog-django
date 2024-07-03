@@ -8,7 +8,7 @@
     <h1>Edite
       {{ post.title }}
     </h1>
-    <form method="post" id="forms" class="mt-3">
+  <form method="post" id="forms" class="mt-3" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
       <div class="form-group text-end" style="margin-top: 23rem">

@@ -111,6 +111,10 @@ img {
     margin-bottom: 30px;
 }
 
+.content .post-excerpt h3 {
+   padding-top: 61px;
+}
+
 /* .navbar {
 position: relative;
 margin-bottom: 30px;
@@ -349,6 +353,13 @@ footer {
     height: 32px;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+/* cover image */
+
+.cover-image img {
+    width: 100% !important;
+    max-width: 100% !important;
 }
 
 /* responsividade */

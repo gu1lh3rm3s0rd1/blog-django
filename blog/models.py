@@ -4,6 +4,7 @@ from markdownx.models import MarkdownxField
 from django.utils.safestring import mark_safe
 import markdown2
 from django.contrib.contenttypes.models import ContentType
+from django.conf import settings
 
 
 class Post(models.Model):
@@ -13,6 +14,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=500)
     content = MarkdownxField()
+    cover_image = models.ImageField(upload_to='cover_images/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True, editable=False)
     author = models.ForeignKey(
