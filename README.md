@@ -47,3 +47,6 @@
 
    python3 manage.py runserver
 ```
+
+## Link para conferir o projeto
+[blog](http://3.135.146.163/blog/)
