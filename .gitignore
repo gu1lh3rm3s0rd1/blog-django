@@ -17,3 +17,4 @@ start.bat
 /blog/__pycache__
 /comments/__pycache__
 /myblog/__pycache__
+__pycache__/
