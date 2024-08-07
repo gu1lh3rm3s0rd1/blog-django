@@ -1,11 +1,6 @@
-# from .models import Comment
-from django.shortcuts import get_object_or_404, redirect
 from django.contrib.contenttypes.models import ContentType
-# from django.contrib.auth import authenticate, login
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.contrib import messages
 
@@ -26,8 +21,8 @@ def home(request):
     return render(request, 'blog/home.html', {'posts': posts})
 
 
-def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
     comments = Comment.objects.filter(post=post)
     content_type = ContentType.objects.get_for_model(Post)
 
@@ -47,7 +42,7 @@ def post_detail(request, pk):
                 content=content_data,
                 post=post
             )
-            return redirect('post_detail', pk=post.pk)
+            return redirect('post_detail', slug=post.slug)
     else:
         comment_form = CommentForm(initial={
             'content_type': content_type,
@@ -90,7 +85,7 @@ def edit_post(request, pk):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('post_detail', pk=post.id)
+            return redirect('post_detail', slug=post.slug)  # Use slug instead of pk
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})

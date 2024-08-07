@@ -13,3 +13,7 @@ guilhermebenjamin_me.crt
 gui.key
 pedido.csr
 blog.sock=
+start.bat
+/blog/__pycache__
+/comments/__pycache__
+/myblog/__pycache__

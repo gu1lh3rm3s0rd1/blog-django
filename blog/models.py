@@ -4,7 +4,7 @@ from markdownx.models import MarkdownxField
 from django.utils.safestring import mark_safe
 import markdown2
 from django.contrib.contenttypes.models import ContentType
-from django.conf import settings
+from django.utils.text import slugify
 
 
 class Post(models.Model):
@@ -19,6 +19,13 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=False)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='posts')
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
+    
+
+    def save(self, *args, **kwargs):
+            if not self.slug:
+                self.slug = slugify(self.title)
+            super().save(*args, **kwargs)
 
     def __str__(self):
         """

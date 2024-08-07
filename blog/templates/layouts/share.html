@@ -6,7 +6,7 @@
       <h4 style="padding-left: 0 !important;" class="mb-2">Leia também</h4>
       <ul style="padding-left: 1rem;">
         {% for post in posts %}
-        <li><a class="link-offset-2 link-underline link-underline-opacity-0 link-info" href="{% url 'post_detail' post.id %}">
+        <li><a class="link-offset-2 link-underline link-underline-opacity-0 link-info" href="{% url 'post_detail' post.slug %}">
             {{ post.title }}</a></li>
         {% endfor %}
       </ul>
