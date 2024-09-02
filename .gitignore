@@ -2,6 +2,7 @@
 db.sqlite3
 vercel.json
 /api/
+staticfiles/
 requirements copy.txt
 runtime.txt
 Procfile
