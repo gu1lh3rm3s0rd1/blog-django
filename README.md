@@ -13,9 +13,13 @@
   
   pip install -r requirements.txt
 
+  python manage.py collectstatic
+
   py manage.py makemigrations
 
   py manage.py migrate
+
+
 ```
 
 ## Iniciando o Servidor
@@ -40,6 +44,8 @@
    source .env/bin/activate
 
    pip install -r requirements.txt
+
+   python manage.py collectstatic
 
    python3 manage.py makemigrations
 
