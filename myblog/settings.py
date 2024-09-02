@@ -25,6 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-zy-(ln-o&bkm*4xd==p%q5@oc^(a76=ahkw)_ag%aw$vu!+i6p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = False
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
@@ -65,6 +66,7 @@ SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -159,6 +161,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# whitenoise
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Configurações de mídia
 MEDIA_ROOT = os.path.join(BASE_DIR, 'cover_images')
