@@ -49,4 +49,4 @@
 ```
 
 ## Link para conferir o projeto
-[blog](http://3.135.146.163/blog/)
+Este projeto foi removido da instancia EC2 da Amazon.
